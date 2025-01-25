@@ -25,12 +25,15 @@ export async function addImage({ image, userId, path }: AddImageParams) {
     if (!author) {
       throw new Error("User not found");
     }
-
+    console.log({
+      ...image,
+      author: author._id,
+    })
     const newImage = await Image.create({
       ...image,
       author: author._id,
     })
-
+    console.log("))))")
     revalidatePath(path);
 
     return JSON.parse(JSON.stringify(newImage));
