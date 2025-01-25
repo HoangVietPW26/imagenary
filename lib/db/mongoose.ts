@@ -14,7 +14,7 @@ interface MongooseConnection {
 // we need to do something to cache th db connection tp reduce number of connectio
 
 
-let cached = (global as any).mongoose
+let cached: MongooseConnection = (global as any).mongoose
 if (!cached) {
     cached = (global as any).mongoose = {conn: null, promise: null}
 }
