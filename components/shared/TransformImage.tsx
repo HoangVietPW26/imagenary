@@ -41,9 +41,8 @@ const TransformImage = ({
                 </button>
             )}
         </div>
-        {console.log(transformationConfig)}
-        {image?.publicId && (transformationConfig ? (
-            
+
+        {image?.publicId && transformationConfig ? (
             <div className='relative'>
                 <CldImage 
                     width={getImageSize(type, image, "width")}
@@ -76,7 +75,7 @@ const TransformImage = ({
             <div className='transformed-placeholder'>
                 Transform Image
             </div>
-        ))}
+        )}
     </div>
   )
 }
