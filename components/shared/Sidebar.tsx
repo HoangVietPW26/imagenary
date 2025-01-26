@@ -34,7 +34,7 @@ const Sidebar = () => {
                         })}
                         </ul>
 
-                        <ul>
+                        <ul className='sidebar-nav_elements'>
                             {navLinks.slice(6).map((link, index) => {
                                 const isActive = link.route === pathname
                                 return (
@@ -57,7 +57,7 @@ const Sidebar = () => {
 
                 <SignedOut>
                     <Button asChild className='button bg-purple-gradient bg-cover'>
-                        <Link href="/sign-in"></Link>
+                        <Link href="/sign-in">Login</Link>
                     </Button>
                 </SignedOut>
             </nav>
