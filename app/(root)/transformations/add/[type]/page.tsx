@@ -7,7 +7,8 @@ import { getUserById } from '@/lib/actions/user.actions'
 import { redirect } from 'next/navigation'
 
 
-const AddTransformationTypePage = async({params: {type}}: SearchParamProps) => {
+const AddTransformationTypePage = async({params}: SearchParamProps) => {
+  const { type } = await params
   const transformation = transformationTypes[type]
   const { userId } = await auth()
   if (!userId) redirect('/sign-in')

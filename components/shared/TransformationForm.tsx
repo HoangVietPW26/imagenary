@@ -69,12 +69,14 @@ const TransformationForm = ({action, data = null, userId, type, creditBalance, c
         defaultValues: initialValues
     })
 
+    console.log(action)
+
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof formSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         console.log(values)
-
+        console.log("jjjjjj")
         setIsSubmmiting(true)
         if (data || image) {
             const transformationUrl = getCldImageUrl({
@@ -97,7 +99,7 @@ const TransformationForm = ({action, data = null, userId, type, creditBalance, c
                 prompt: values.prompt,
                 color: values.color
             }
-
+            console.log(imageData)
             if (action === 'Add') {
                 try {
                     const newImage = await addImage({
@@ -105,6 +107,7 @@ const TransformationForm = ({action, data = null, userId, type, creditBalance, c
                         userId,
                         path: '/'
                     })
+                    console.log(newImage)
 
                     if(newImage) {
                         form.reset()
@@ -164,13 +167,16 @@ const TransformationForm = ({action, data = null, userId, type, creditBalance, c
                     [fieldName === 'prompt' ? 'prompt' : 'to']:value
                 }
             }))
-        },1000)
-
+        },1000)()
         return onChangeField(value)
     }
 
     const onTransformHandler = async() => {
         setIsTransforming(true)
+
+        console.log('newTransformation', newTransformation)
+        console.log('transformationConfig', transformationConfig)
+        console.log(deepMergeObjects(newTransformation, transformationConfig))
         setTransformationConfig(
             deepMergeObjects(newTransformation, transformationConfig)
         )
@@ -209,6 +215,7 @@ const TransformationForm = ({action, data = null, userId, type, creditBalance, c
                 render={({field}) => (
                     <Select
                         onValueChange={(value) => onSelectFieldHandler(value, field.onChange)}
+                        value={field.value}
                     >
                         <SelectTrigger className="select-field">
                             <SelectValue placeholder="Select Size" />
@@ -240,7 +247,7 @@ const TransformationForm = ({action, data = null, userId, type, creditBalance, c
                             value={field.value} 
                             className='input-field'
                             onChange={(e) => onInputChangeHandler(
-                                'promp',
+                                'prompt',
                                 e.target.value,
                                 type,
                                 field.onChange
