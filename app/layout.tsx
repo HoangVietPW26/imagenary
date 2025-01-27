@@ -37,7 +37,11 @@ export default function RootLayout({
       appearance={{
         variables: {
           colorPrimary: '#624cf5'
-        }
+        },
+        layout: {
+          logoImageUrl: '/assets/images/imagenary-logo.png',
+          socialButtonsVariant: 'iconButton'
+        },
       }}
     >
     <html lang="en">
